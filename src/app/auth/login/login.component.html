@@ -1,0 +1,73 @@
+<div *ngIf="!countBoolean" class="container-fluid vh-100">
+  <div class="row h-100">
+    <div class="col-12 col-xxl-6 col-xl-6 text-center col-lg-6 col-md-6 col-sm-12 align-content-center justify-content-center ms-0 text-white custom-bg">
+      <img [src]="logo" alt="Logo">
+    </div>
+    <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 align-content-center border-0 justify-content-center">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class=" border-0 p-xxl-5 p-xl-5 p-lg-5 p-md-4 p-3">
+            <h2 class="mb-4">Login</h2>
+            <h2 class="text-success" (click)="sweetAlert()">Sweet Alert Test...?</h2>
+            <h2 class="text-danger" (click)="countInputTypes()">Count Input Types.....?</h2>
+            <h2 class="text-info" (click)="Toast()">Toast Message Test...?</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #formRef>
+              <div class="input-group mb-3">
+                <span class="input-group-text border"><i class="fas fa-envelope"></i></span>
+                <input type="text" class="form-control" placeholder="Email Address" formControlName="email">
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text border"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="form-check">
+                  <input class="form-check-input custom-text custom-bg" type="checkbox" formControlName="rememberMe" id="rememberMe">
+                  <label class="custom-text" for="rememberMe">Remember Me</label>
+                </div>
+                <a href="/auth/forgot" class="text-decoration-none custom-text">Forgot Password?</a>
+              </div>
+              <a href="/auth/mobile-login" class="d-block text-center mb-4 custom-text">Login With OTP</a>
+              <button type="submit" class="btn custom-bg w-100 text-white">Login</button>
+            </form>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="countBoolean" class="container-fluid">
+  <h2 class="mt-4">Input Type Counts</h2>
+  <table class="table table-bordered table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Input Type</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Total Inputs</td>
+        <td>{{ totalInputs }}</td>
+      </tr>
+      <tr>
+        <td>Text Inputs</td>
+        <td>{{ textInputs }}</td>
+      </tr>
+      <tr>
+        <td>Password Inputs</td>
+        <td>{{ passwordInputs }}</td>
+      </tr>
+      <tr>
+        <td>Checkbox Inputs</td>
+        <td>{{ checkboxInputs }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+

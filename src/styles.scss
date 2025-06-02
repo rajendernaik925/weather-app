@@ -1,1 +1,156 @@
-/* You can add global styles to this file, and also import other style files */
+// /* @import "@ng-select/ng-select/themes/default.theme.css"; */
+
+// html, body {
+//   height: 100%;
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+//   margin: 0;
+//   background: #f8f9fa;
+// }
+
+// .action-icon {
+//   font-size: 25px !important;
+// }
+
+// .spinner-overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+//   backdrop-filter: blur(5px); /* Blur effect */
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 1000; /* Make sure it sits on top of other content */
+// }
+
+// .spinner img {
+//   width: 50px; /* Adjust size as needed */
+//   height: 50px;
+// }/* You can add global styles to this file, and also import other style files */
+
+// section.sidebar {
+//   position: absolute;
+//   width: 18%;
+//   top: 10%;
+//   bottom: 0;
+//   box-shadow: 0px 4px 16px 0px #00000026;
+
+// }
+
+// section.dynamic {
+//   // position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   margin-left: 19%;
+//   // margin-right: 10%;
+// }
+
+// section.dynamic-content {
+//   max-height: calc(100vh - 50px);
+//   overflow-y: scroll;
+//   overflow-x: hidden;
+//   scrollbar-width: none;
+// }
+
+// section.header {
+//   position: relative;
+//   top: 0;
+//   .header-card {
+//     .header-card-content {
+//       height: 60px;
+//     }
+//   }
+// }
+
+// section.footer {
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   .footer-card {
+//     .footer-card-content {
+//       height: 30px;
+//     }
+//   }
+// }
+.text-custom {
+  color: #0072BC;
+}
+.custom-bg {
+  background-color: #0072BC;
+}
+.custom-bg {
+  border: solid 1px #0072BC;
+}
+
+
+html, body {
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  background: #f2f2f2;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+section.header {
+  width: 100%;
+  height: 68px; /* Adjust header height as needed */
+  // background: #fff;
+  // box-shadow: 0px 4px 16px 0px #00000026;
+  // z-index: 1000;
+}
+
+.content-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Prevent parent scrolling */
+}
+
+section.sidebar {
+  width: 20%; /* Adjust sidebar width as needed */
+  height: 100%;
+  margin-top: 10px;
+  background: #f2f2f2;
+  // box-shadow: 0px 4px 16px 0px #00000026;
+  position: relative;
+  margin-right: 10px;
+}
+
+section.dynamic-content {
+  flex: 1;
+  overflow: hidden; /* Hide outer scrollbar */
+  position: relative;
+  // background: #f2f2f2;
+  margin-top: 10px;
+}
+
+section.dynamic-content .scroll-container {
+  position: relative;
+  top: 0;
+  left: 1%;
+  right: 0;
+  bottom: 0;
+  // overflow-y: scroll; /* Internal scrolling only */
+  padding: 0.5rem; /* Optional padding for content */
+}
+
+/* Ensure scrolling works but scrollbar remains hidden */
+section.dynamic-content .scroll-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+section.dynamic-content {
+  scrollbar-width: none; /* Firefox-specific to hide scrollbar */
+}
+.margin-left {
+  margin-left : 0px !important;
+}

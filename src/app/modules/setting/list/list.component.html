@@ -1,0 +1,76 @@
+<!-- <div class="container mt-4">
+  <h3>Settings - Listing</h3>
+  <div class="table-responsive mt-3">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Setting Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of settingsList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-2" (click)="editSetting(item.id)">
+              Edit
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteSetting(item.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="settingsList.length === 0">
+          <td colspan="4" class="text-center">No settings found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="btn btn-success mt-3" (click)="addSetting()">Add New Setting</button>
+</div>
+
+<ng-template #offerModal>
+  Rajender
+</ng-template> -->
+
+
+<!-- <app-nav></app-nav> -->
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <span>
+            <li class="breadcrumb-item" [routerLink]="['/hrms']">HRMS</li>
+            <li class="breadcrumb-item active" aria-current="page">
+                 Ctc Upload
+            </li>
+        </span>    
+        <li class="_date">Logged in from {{myDate | momentDate: "dddd, DD"}}<sup>{{(myDate | momentDate: "D") | dateSuffix}}</sup>
+        {{myDate | momentDate: "MMM yyyy, hh:mm A"}}</li>
+    </ol>
+</nav> -->
+
+<div class="container-fluid">
+  <div class="card p-4">
+    <form (ngSubmit)="onSubmit()">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="form-label">Upload Excel (.xlsx):</label>
+          <input type="file" #fileInput1 accept=".xlsx" class="form-control" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Upload Excel (.xlsx):</label>
+          <input type="file" #fileInput2 accept=".xlsx" class="form-control" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Upload Excel (.xlsx):</label>
+          <input type="file" #fileInput3 accept=".xlsx" class="form-control" />
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

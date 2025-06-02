@@ -1,0 +1,53 @@
+<div class="min-vh-100 d-flex flex-column">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h4 class="mb-0 fs-bold">Weather Report Today</h4>
+      <form>
+        <div class="input-group">
+          <select class="form-select shadow-none" [(ngModel)]="cityName" name="city" (change)="getWeather()" required>
+            <option value="" disabled>Select a City</option>
+            <option *ngFor="let topCity of topCities" [value]="topCity">
+              {{ topCity }}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <hr class="mt-1 custom-bg border-bg">
+    <div *ngIf="noDataFound" class="text-danger text-center mb-3">
+      City not found. Try again!
+    </div>
+    <div class="scroll-hidden" style="max-height: 73vh; overflow-y: auto; padding-right: 8px;">
+      <div *ngIf="weatherData" class="card text-center mx-auto mb-4" style="max-width: 400px;">
+        <div class="card-body">
+          <h4>{{ weatherData.city }}</h4>
+          <img [src]="'https://openweathermap.org/img/wn/' + weatherData.icon + '@2x.png'" />
+          <p>{{ weatherData.description | titlecase }}</p>
+          <h2>{{ weatherData.temp }}°C</h2>
+          <table class="table table-bordered bg-white text-dark">
+            <tr>
+              <th>Humidity</th>
+              <td>{{ weatherData.humidity }}%</td>
+            </tr>
+            <tr>
+              <th>Wind</th>
+              <td>{{ weatherData.wind }} m/s</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="forecastData.length > 0" class="row justify-content-center">
+        <div class="col-md-4" *ngFor="let day of forecastData">
+          <div class="card text-center ">
+            <div class="card-body">
+              <h6>{{ day.day }}</h6>
+              <img [src]="'https://openweathermap.org/img/wn/' + day.icon + '@2x.png'" />
+              <p class="mb-1">{{ day.description }}</p>
+              <strong>{{ day.temp }}°C</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
