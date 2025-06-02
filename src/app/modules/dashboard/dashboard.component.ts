@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     'Vadodara',
     'Warangal',
     'Khammam',
+    'Mahabubabad',
     'Nizamabad',
     'Karimnagar',
     'Ramagundam',
