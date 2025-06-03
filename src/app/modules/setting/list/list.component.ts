@@ -1,63 +1,66 @@
-import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { COMMON_EXPORTS } from '../../../core/common-exports.constants';
-import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
-import { CoreService } from '../../../core/services/core.services';
+import { SpeechRecognitionService } from '../speech-recognition.service';
+import { TextToSpeechService } from '../text-to-speech.service';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [
-    COMMON_EXPORTS
-  ],
+  imports: [COMMON_EXPORTS],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrls: ['./list.component.scss']
 })
-export class ListComponent {
-onSubmit() {
-throw new Error('Method not implemented.');
-}
+export class ListComponent implements OnInit {
+  transcript = '';
+  isListening = false;
+  conversationHistory: string[] = [];
 
-  @ViewChild('offerModal', { static: true}) offerModal!: TemplateRef<any>;
-  dialogRef!: DialogRef;
-  private dialog: Dialog = inject(Dialog);
-  private coreService:CoreService = inject(CoreService);
-  settingsList = [
-    { id: 1, name: 'Notification', description: 'Manage notification preferences' },
-    { id: 2, name: 'Privacy', description: 'Control privacy settings' },
-    { id: 3, name: 'Language', description: 'Set your preferred language' },
-  ];
+  constructor(
+    private speechService: SpeechRecognitionService,
+    private ttsService: TextToSpeechService
+  ) { }
 
-  addSetting() {
-    this.dialogRef = this.dialog.open(this.offerModal, {
-      // backdropClass: 'card',
-      // hasBackdrop: true,
-      panelClass: 'card',
-      height: '250px',
-      width: '350px'
-    });
+  ngOnInit(): void {
+    this.loadHistory();
   }
 
-  editSetting(id: number) {
-    console.log('Edit setting with ID:', id);
-  }
-
-  deleteSetting(id: number) {
-    const confirmation = confirm('Are you sure you want to delete this setting?');
-    if (confirmation) {
-      this.settingsList = this.settingsList.filter((item) => item.id !== id);
-      console.log('Deleted setting with ID:', id);
+  toggleListening(): void {
+    if (this.isListening) {
+      this.speechService.stopListening();
+      this.isListening = false;
+    } else {
+      this.speechService.startListening((text: string) => {
+        this.transcript = text;
+        this.isListening = false;
+        this.addToHistory(text);
+      });
+      this.isListening = true;
     }
   }
-  Toast() {
-    this.coreService.displayToast({
-      type:'success',
-      message: "Sneha"
-    })
-    setTimeout(() => {
-      this.coreService.displayToast({
-        type:'error',
-        message: "Sneha"
-      })
-    }, 2000);
+
+  speakText(text: string): void {
+    this.ttsService.speak(text);
   }
+
+  stopSpeaking(): void {
+    this.ttsService.stop();
+  }
+
+  private addToHistory(text: string) {
+    this.conversationHistory.unshift(text); // Add newest at top
+    localStorage.setItem('conversationHistory', JSON.stringify(this.conversationHistory));
+  }
+
+  private loadHistory() {
+    const history = localStorage.getItem('conversationHistory');
+    if (history) {
+      this.conversationHistory = JSON.parse(history);
+    }
+  }
+
+  clearConversation(): void {
+    this.conversationHistory = [];
+    localStorage.removeItem('conversationHistory');
+  }
+
 }
